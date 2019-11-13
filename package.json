@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-boilerplate",
+  "name": "twse-price-notify",
   "version": "1.0.0",
-  "description": "A minimal Node.js boilerplate project",
+  "description": "Notification on stocks or ETFs in TWSE",
   "main": "dist/app.js",
   "scripts": {
     "dev": "npm run development",
@@ -20,8 +20,10 @@
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
+    "@babel/runtime": "^7.7.2",
     "babel-eslint": "^10.0.2",
     "cross-env": "^5.2.0",
     "del": "^5.0.0",
@@ -33,5 +35,10 @@
     "gulp-if": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "isdev": "^1.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "puppeteer": "^2.0.0",
+    "superagent": "^5.1.0"
   }
 }
