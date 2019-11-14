@@ -8,9 +8,65 @@ This app neither guarantees any damage or loss from using it nor recommends any 
 
 本程式不擔保因使用本程式所造成的任何損失，也不推薦任何投資。請自行判斷程式輸出的結果。
 
+## System Requirements
+
+* Node.js
+* Your own domain name
+* Mailgun account
+* (Optional) a GNU/Linux VPS
+
+We need Maingun to notify you when target prices are available. Mailgun needs a personal domain name to set a custom mail address.
+
+To run the bot periodically, deploy it at a remote GNU/Linux VPS, invoking it as a cron job.
+
 ## Usage
 
-Pending.
+Clone this repo to your own machine:
+
+```
+$ git clone https://github.com/cwchentw/twse-price-notify
+```
+
+Change current working directory to the root of the repo:
+
+```
+$ cd twse-price-notify
+```
+
+Install dependencies for first time use:
+
+```
+$ npm install
+```
+
+Write a *.env* for environment variables used in this app:
+
+```
+MAILGUN_DOMAIN=example.com
+MAILGUN_KEY=enter-mailgun-api-key-here
+INVESTOR=your@gmail.com
+```
+
+Write your target prices of stocks or ETFs in a config file. Let's say it is *assets.json*:
+
+```
+{
+    "0050": [75.0, 80.0],
+    "0056": [25.0, 27.0]
+}
+```
+
+Run this app:
+
+```
+$ npm start /path/to/assets.json
+```
+
+To invoke the notification bot periodically, write a cron job like this:
+
+```
+5 9-13 * * 1-5 user cd /home/user/twse-price-notify && npm start ../assets.json
+```
 
 ## Copyright
 
