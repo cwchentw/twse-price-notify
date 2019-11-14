@@ -75,7 +75,7 @@ async function sendMail(subject, text) {
         try {
             price = await queryStockPrice(target);
         } catch (err) {
-            await sendMail('Unable to fetch stock data', 'Please check your app');
+            await sendMail(`Unable to fetch stock data ${target}`, 'Please check your app');
             return;
         }
 
