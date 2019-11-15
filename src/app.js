@@ -18,6 +18,7 @@ async function queryStockPrice(asset) {
     try {
         await page.goto(url);
     } catch (err) {
+        await browser.close();
         throw err;
     }
 
