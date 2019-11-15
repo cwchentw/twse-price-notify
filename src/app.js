@@ -47,6 +47,12 @@ async function sendMail(subject, text) {
         });
 }
 
+const delay = function (ms) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, ms);
+    });
+};
+
 /* Main function. */
 (async function () {
     /* Get config path. */
@@ -65,7 +71,7 @@ async function sendMail(subject, text) {
     let targets = JSON.parse(file);
 
     /* Scan assets for potential profit. */
-    Object.keys(targets).forEach(async function (target) {
+    for (let target in targets) {
         const min = targets[target][0];
         const max = targets[target][1];
 
@@ -84,5 +90,7 @@ async function sendMail(subject, text) {
         } else if (max <= price) {
             await sendMail(`Sell ${target} at ${price}`, `Sell ${target} at ${price}`);
         }
-    });
+
+        await delay(5000);
+    }
 })();
