@@ -19,25 +19,19 @@ We need Maingun to notify you when target prices are available. Mailgun needs a 
 
 To run the bot periodically, deploy it at a remote GNU/Linux VPS, invoking it as a cron job.
 
-## Usage
+## Install
 
-Clone this repo to your own machine:
-
-```
-$ git clone https://github.com/cwchentw/twse-price-notify
-```
-
-Change current working directory to the root of the repo:
-
-```
+```console
+$ git clone https://github.com/cwchentw/twse-price-notify.git
 $ cd twse-price-notify
-```
-
-Install dependencies for first time use:
-
-```
 $ npm install
+$ npm run prod
+$ npm install -g
 ```
+
+Then, `twse-price-notify` should be available in your console environment.
+
+## Usage
 
 Write a *.env* for environment variables used in this app:
 
@@ -59,13 +53,13 @@ Write your target prices of stocks or ETFs in a config file. Let's say it is *as
 Run this app:
 
 ```
-$ npm start /path/to/assets.json
+$ twse-price-notify /path/to/assets.json
 ```
 
 To invoke the notification bot periodically, write a cron job like this:
 
 ```
-5 9-13 * * 1-5 user cd /home/user/twse-price-notify && npm start ../assets.json
+5 9-13 * * 1-5 user twse-price-notify assets.json
 ```
 
 ## Copyright

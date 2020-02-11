@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Notification on stocks or ETFs in TWSE",
   "main": "dist/app.js",
+  "bin": {
+    "twse-price-notify": "./cli.js"
+  },
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development gulp",

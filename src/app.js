@@ -5,6 +5,10 @@ const fs = require('fs');
 const puppeteer = require('puppeteer');
 const superagent = require('superagent');
 
+const PROGRAM = "twse-price-notify";
+const LICENSE = "MIT";
+const VERSION = "0.1.0";
+
 async function queryStockPrice(asset) {
     if (!asset) {
         throw new Error("No valid asset");
@@ -60,16 +64,47 @@ const delay = function (ms) {
     let args = process.argv;
 
     if (args.length < 3) {
-        throw new Error('No valid config');
+        console.error('No valid config');
+        console.error(`Usage: ${PROGRAM} assets.json`);
+        process.exit(1);
+    }
+
+    if ('-h' === args[2] || '--help' === args[2]) {
+        console.log(`Usage: ${PROGRAM} assets.json`);
+        process.exit(0);
+    }
+    else if ('-v' === args[2] || '--version' === args[2]) {
+        console.log(`${VERSION}`);
+        process.exit(0);
+    }
+    else if ('--license' === args[2]) {
+        console.log(`${LICENSE}`);
+        process.exit(0);
+    }
+    else if (args[2].startsWith('-')) {
+        console.error(`Invalid argument: ${args[2]}`);
+        process.exit(1);
     }
 
     const config = args[2];
 
     /* Read config file. */
-    let file = fs.readFileSync(config, 'utf8');
+    let file;
+    try {
+        file = fs.readFileSync(config, 'utf8');
+    } catch (err) {
+        console.error(`Invalid file: ${err}`);
+        process.exit(1);
+    }
 
     /* Parse config file. */
-    let targets = JSON.parse(file);
+    let targets;
+    try {
+        targets = JSON.parse(file);
+    } catch (err) {
+        console.log(`Invalid config: ${err}`);
+        process.exit(1);
+    }
 
     /* Scan assets for potential profit. */
     for (let target in targets) {
