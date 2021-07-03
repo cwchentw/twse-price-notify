@@ -64,4 +64,4 @@ To invoke the notification bot periodically, write a cron job like this:
 
 ## Copyright
 
-[MIT](https://opensource.org/licenses/MIT)
+Copyright (c) 2019-2020 Michelle Chen. Licensed under [MIT](https://opensource.org/licenses/MIT)
